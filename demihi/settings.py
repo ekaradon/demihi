@@ -29,8 +29,11 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+INIT_APPS = (
 
-INSTALLED_APPS = (
+)
+
+DEFAULT_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +41,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
+
+THIRD_PARTY_APPS = (
+
+)
+
+CUSTOM_APPS = (
+    'core',
+)
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
