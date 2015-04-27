@@ -1,9 +1,7 @@
 __author__ = 'ekaradon'
-from django.conf.urls import patterns, url
-
+from django.conf.urls import url
 from blog import views
 
-urlpatterns = patterns(
-	'',
+urlpatterns = [
 	url(r'^$', views.index, name='index'),
-)
+]
