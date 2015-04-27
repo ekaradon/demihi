@@ -44,9 +44,11 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'debug_toolbar',
+    'pyjade',
 )
 
 CUSTOM_APPS = (
+    'blog',
     'core',
     'fts',
 )
@@ -66,11 +68,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'demihi.urls'
 
+TEMPLATE_DEBUG = DEBUG
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -78,6 +79,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': (
+                ('pyjade.ext.django.Loader',(
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                )),
+            )
         },
     },
 ]
