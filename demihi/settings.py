@@ -150,3 +150,6 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_OUTPUT_DIR = "cache"
 COMPRESS_ROOT = os.path.join(BASE_DIR, '.compress')
+COMPRESS_CSS_FILTERS = [
+	'compressor.filters.cssmin.CSSMinFilter',
+]
