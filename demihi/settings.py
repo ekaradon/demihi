@@ -47,7 +47,10 @@ THIRD_PARTY_APPS = (
 	'compressor',
 	# commented while: https://github.com/django-debug-toolbar/django-debug-toolbar/issues/706 is open
 	# 'debug_toolbar',
+	# Pyjade - jade renderer
 	'pyjade',
+	# Pillow - image management
+	'PIL',
 )
 
 CUSTOM_APPS = (
