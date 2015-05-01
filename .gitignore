@@ -49,6 +49,10 @@ coverage.xml
 
 # Django stuff:
 *.log
+*/migrations/
+
+# Django-compressor
+.compress
 
 # Sphinx documentation
 docs/_build/
@@ -61,3 +65,6 @@ target/
 
 # Databases
 *.sqlite3
+
+# User stuff:
+/media
