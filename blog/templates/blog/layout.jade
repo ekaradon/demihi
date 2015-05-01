@@ -1,0 +1,42 @@
+!!! 5
+//Created by ekaradon on 26/04/15.
+- load staticfiles
+- load compress
+html
+	head
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		include blog/includes/favicons.jade
+		- compress css
+		link(rel="stylesheet", type="text/less", media="all", href='{%static "less/app.less" %}')
+		link(rel="stylesheet", type="text/less", media="all", href='{%static "less/custom/app.less" %}')
+		- endcompress
+		- compress js
+		script(src='{% static "js/jquery.min.js" %}')
+		script(src='{% static "js/marked.min.js" %}')
+		script(src='{% static "js/uikit.min.js" %}')
+		script.
+			$(function () {
+				$('.content').each(function () {
+					$(this).html(marked($(this).text()));
+				});
+			});
+		- endcompress
+		title Demihi
+	body
+		nav.uk-navbar.uk-navbar-attached.uk-margin-large-bottom
+			.uk-container.uk-container-center
+				a.uk-navbar-brand.uk-hidden-small(href='/') Demihi
+				a.uk-navbar-toggle(href='#offcanvas', data-uk-offcanvas)
+		.uk-container.uk-container-center.main-frame
+			block content
+		#offcanvas.uk-offcanvas
+			.uk-offcanvas-bar
+				ul.uk-nav.uk-nav-offcanvas
+					li.uk-hidden-small
+						span &nbsp;
+					li.uk-navbar-brand.uk-visible-small(style="float: none", href='#') Demihi
+					li.uk-active
+						a(href='/') Blog
+					li
+						a(href='#') Soon...

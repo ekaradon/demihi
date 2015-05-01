@@ -1,0 +1,18 @@
+extends blog/layout
+- load l10n
+block content
+	article.uk-article
+		.uk-grid
+			.uk-width-1-4.uk-hidden-small
+				img.uk-border-circle(src="/media/{{entry.header}}")
+			.uk-width-3-4.uk-vertical-align
+				h1.uk-article-title(style="display:inline-block; vertical-align:middle; margin-bottom:0; ") {{entry.title}}
+		p.uk-article-meta
+			span Written by {{entry.author.username}} on {{entry.pub_date | date:"DATETIME_FORMAT"}}
+			if entry.tags.all
+				span - Posted in:&nbsp;
+				- for tag in entry.tags.all
+					i {{tag.name}}
+		hr.uk-article-divider
+		p {{entry.body}}
+
