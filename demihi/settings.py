@@ -29,11 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-INIT_APPS = (
-
-)
-
 DEFAULT_APPS = (
 	'django.contrib.admin',
 	'django.contrib.auth',
@@ -44,6 +39,8 @@ DEFAULT_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+	'autocomplete_light',
+
 	'compressor',
 	# commented while: https://github.com/django-debug-toolbar/django-debug-toolbar/issues/706 is open
 	# 'debug_toolbar',
@@ -78,6 +75,7 @@ TEMPLATE_DEBUG = DEBUG
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
 		'OPTIONS': {
 			'context_processors': [
 				'django.template.context_processors.debug',

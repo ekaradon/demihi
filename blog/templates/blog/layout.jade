@@ -26,13 +26,10 @@ html
 	body
 		nav.uk-navbar.uk-navbar-attached.uk-margin-large-bottom
 			.uk-container.uk-container-center
-				a.uk-navbar-brand.uk-hidden-small(href='/blog/') Demihi
+				a.uk-navbar-brand.uk-hidden-small(href='/') Demihi
 				a.uk-navbar-toggle(href='#offcanvas', data-uk-offcanvas)
 		.uk-container.uk-container-center.main-frame
-			.uk-grid
-				.uk-width-3-4
-					block content
-				.uk-width-1-4
+			block content
 		#offcanvas.uk-offcanvas
 			.uk-offcanvas-bar
 				ul.uk-nav.uk-nav-offcanvas
@@ -40,6 +37,6 @@ html
 						span &nbsp;
 					li.uk-navbar-brand.uk-visible-small(style="float: none", href='#') Demihi
 					li.uk-active
-						a(href='/blog') Blog
+						a(href='/') Blog
 					li
 						a(href='#') Soon...
