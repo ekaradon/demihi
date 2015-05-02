@@ -13,3 +13,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
+
+
+STATIC_ROOT = os.path.expanduser('~/static/demihi/')
+COMPRESS_ROOT = os.path.join(STATIC_ROOT)
