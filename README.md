@@ -17,3 +17,4 @@
     - [images] pillow (2.8.1)
     - [rendering] less
         - nodeenv (0.13.1)
+    - [production] gunicorn (19.3.0)
