@@ -2,6 +2,7 @@ __author__ = 'ekaradon'
 from demihi.settings.base import *
 
 DEBUG = False
+ALLOWED_HOSTS = ['demihi.fr']
 
 SECURE_HSTS_SECONDS = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True

@@ -20,8 +20,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
-DEBUG = False
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -72,7 +70,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'demihi.urls'
 
-TEMPLATE_DEBUG = DEBUG
 TEMPLATES = [
 	{
 		'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -134,7 +131,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, "static"),
-	'/var/www/static/',
 )
 
 STATICFILES_FINDERS = (
@@ -155,3 +151,5 @@ COMPRESS_ROOT = os.path.join(BASE_DIR, '.compress')
 COMPRESS_CSS_FILTERS = [
 	'compressor.filters.cssmin.CSSMinFilter',
 	]
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
