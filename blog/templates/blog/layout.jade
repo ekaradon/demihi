@@ -24,19 +24,32 @@ html
 		- endcompress
 		title Demihi
 	body
-		nav.uk-navbar.uk-navbar-attached.uk-margin-large-bottom
-			.uk-container.uk-container-center
-				a.uk-navbar-brand.uk-hidden-small(href='/') Demihi
-				a.uk-navbar-toggle(href='#offcanvas', data-uk-offcanvas)
-		.uk-container.uk-container-center.main-frame
-			block content
-		#offcanvas.uk-offcanvas
-			.uk-offcanvas-bar
-				ul.uk-nav.uk-nav-offcanvas
-					li.uk-hidden-small
-						span &nbsp;
-					li.uk-navbar-brand.uk-visible-small(style="float: none", href='#') Demihi
-					li.uk-active
-						a(href='/') Blog
-					li
-						a(href='#') Soon...
+		.container
+			nav#top.uk-navbar.uk-navbar-attached.uk-margin-large-bottom
+				.uk-container.uk-container-center
+					a.uk-navbar-brand.uk-hidden-small(href='/') Demihi
+					a.uk-navbar-toggle(href='#offcanvas', data-uk-offcanvas)
+			.uk-container.uk-container-center.main-frame
+				block content
+			#offcanvas.uk-offcanvas
+				.uk-offcanvas-bar
+					ul.uk-nav.uk-nav-offcanvas
+						li.uk-hidden-small
+							span &nbsp;
+						li.uk-navbar-brand.uk-visible-small(style="float: none", href='#') Demihi
+						li.uk-active
+							a(href='/') Blog
+						li
+							a(href='#') Soon...
+			nav.uk-navbar.uk-navbar-bottom
+				.uk-container.uk-container-center
+					ul.uk-navbar-nav
+						li
+							a(href="https://github.com/ekaradon/demihi") GitHub
+						li
+							a(href="https://github.com/ekaradon/demihi/issues") Issues
+					.uk-navbar-flip
+						ul.uk-navbar-nav
+							li
+								a(href="#top", data-uk-smooth-scroll)
+									i.uk-icon-chevron-up.uk-icon-small
