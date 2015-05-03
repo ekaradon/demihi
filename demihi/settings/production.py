@@ -16,4 +16,5 @@ X_FRAME_OPTIONS = 'DENY'
 
 
 STATIC_ROOT = os.path.expanduser('~/static/demihi/')
+MEDIA_ROOT = os.path.expanduser('~/media/demihi/')
 COMPRESS_ROOT = os.path.join(STATIC_ROOT)
