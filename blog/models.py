@@ -1,4 +1,5 @@
-import datetime, os
+import datetime
+import os
 
 from django.db import models
 
@@ -16,28 +17,32 @@ from core.models import Language
 class Album(models.Model):
 	title = models.CharField(max_length=60)
 	public = models.BooleanField(default=False)
+
 	def __unicode__(self):
 		return self.title
+
 
 class Comment(Model):
 	answer_to = models.ForeignKey('self', blank=True, null=True)
 	author = models.ForeignKey(User)
 	body = models.TextField()
 	entry = models.ForeignKey('Entry')
-	last_modified = models.DateTimeField('last time modified', auto_now=True)
-	pub_date = models.DateTimeField('date published', auto_now_add=True)
+	date_modified = models.DateTimeField('last time modified', auto_now=True)
+	date_published = models.DateTimeField('date published', auto_now_add=True)
 
 	def __str__(self):
 		return "Response to: " + self.entry.title
 
+
 class Entry(Model):
+	active = models.BooleanField('publish', default=False)
 	author = models.ForeignKey(User)
 	body = models.TextField()
 	header = models.ForeignKey('Image', blank=True, null=True)
 	language = models.ForeignKey(Language, db_index=True)
-	last_modified = models.DateTimeField('last time modified', auto_now=True)
-	pub_date = models.DateTimeField('date published', auto_now_add=True)
-	summary = models.TextField(blank=True)
+	date_modified = models.DateTimeField('last time modified', auto_now=True)
+	date_published = models.DateTimeField('date published', editable=False, blank=True, null=True)
+	date_created = models.DateTimeField('date created', auto_now_add=True)
 	tags = models.ManyToManyField('Tag', blank=True)
 	title = models.CharField(max_length=200)
 
@@ -47,23 +52,34 @@ class Entry(Model):
 	def __str__(self):
 		return self.title
 
+	def is_published(self):
+		return self.active
+
 	def was_published_recently(self):
-		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+		if self.date_published:
+			return self.date_published >= timezone.now() - datetime.timedelta(days=1)
+		return False
 
 	def tags_(self):
 		lst = [x[1] for x in self.tags.values_list()]
 		return ', '.join(lst)
 
+	def save(self, *args, **kwargs):
+		if self.is_published() and not self.date_published :
+			self.date_published = datetime.datetime.today()
+		super(Entry, self).save(*args, ** kwargs)
+
 	was_published_recently.admin_order_field = 'pub_date'
 	was_published_recently.boolean = True
 	was_published_recently.short_description = 'Published recently?'
+
 
 class Image(models.Model):
 	title = models.CharField(max_length=60, blank=True, null=True)
 	image = models.FileField(upload_to="upload/")
 	tags = models.ManyToManyField('Tag', blank=True)
 	albums = models.ManyToManyField(Album, blank=True)
-	created = models.DateTimeField(auto_now_add=True)
+	date_created = models.DateTimeField(auto_now_add=True)
 	rating = models.IntegerField(default=50)
 	width = models.IntegerField(blank=True, null=True)
 	height = models.IntegerField(blank=True, null=True)
@@ -74,7 +90,6 @@ class Image(models.Model):
 
 	def __str__(self):
 		return self.image.name
-
 
 	def save(self, *args, **kwargs):
 		"""Save image dimensions."""
@@ -100,6 +115,7 @@ class Image(models.Model):
 			(self.image.name, self.image.name)
 		)
 	thumbnail.allow_tags = True
+
 
 class Tag(Model):
 	name = models.CharField(max_length=20)
