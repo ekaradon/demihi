@@ -17,24 +17,24 @@ class CommentInline(admin.StackedInline):
 	extra = 0
 	fieldsets = [
 		('Comment', {
-			'fields': ['author','answer_to', 'body', 'pub_date', 'last_modified'],
+			'fields': ['author','answer_to', 'body', 'date_published', 'date_modified'],
 			'classes': ['collapse']
 		})
 	]
-	readonly_fields = ['pub_date', 'last_modified']
+	readonly_fields = ['date_published', 'date_modified']
 
 
 class EntryAdmin(admin.ModelAdmin):
-	list_display = ['title', 'pub_date', 'language', 'was_published_recently']
-	list_filter = ['pub_date']
-	readonly_fields = [ 'pub_date', 'last_modified']
+	list_display = ['title', 'date_published', 'language', 'was_published_recently']
+	list_filter = ['date_published']
+	readonly_fields = [ 'date_created', 'date_published', 'date_modified']
 	filter_horizontal = ['tags']
 	search_fields = ['title', 'body']
 	formfield_overrides = { TextField: {'widget': forms.Textarea(attrs={'data-uk-htmleditor':'{markdown:true}'})}, }
 	fieldsets = [
-		(None, {'fields': ['title', 'header', 'language', 'tags']}),
-		('Date information', {'fields': ['pub_date', 'last_modified'], 'classes': ['collapse']}),
-		('Content', {'fields': ['summary', 'body']})
+		(None, {'fields': ['title', 'active', 'header', 'language', 'tags']}),
+		('Date information', {'fields': ['date_created', 'date_published', 'date_modified'], 'classes': ['collapse']}),
+		('Content', {'fields': ['body']})
 	]
 	inlines = [CommentInline]
 	form = EntryForm
@@ -58,7 +58,7 @@ class EntryAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
 	search_fields = ["title"]
 	filter_horizontal = ["tags", "albums"]
-	list_display = ["__unicode__", "title", "user", "rating", "size", "tags_", "albums_", "thumbnail", "created"]
+	list_display = ["__unicode__", "title", "user", "rating", "size", "tags_", "albums_", "thumbnail", "date_created"]
 
 	def save_model(self, request, obj, form, change):
 		obj.user = request.user

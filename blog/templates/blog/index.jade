@@ -8,7 +8,8 @@ block content
 					article.uk-article
 						.uk-grid
 							.uk-width-1-4.uk-hidden-small
-								img.uk-border-circle(src="/media/{{entry.header}}")
+								- if entry.header
+									img.uk-border-circle(src="/media/{{entry.header}}")
 							.uk-width-3-4.uk-vertical-align
 								h1.uk-article-title(style="display:inline-block; vertical-align:middle; margin-bottom:0; ") {{entry.title}}
 							//-svg(style="position: absolute", height="80", width="80")
@@ -16,13 +17,13 @@ block content
 											circle(cx="40", cy="40", r="40")
 									image(x="0", y="0", xlink:href='/media/{{entry.header}}', height="100", width="100", clip-path="url(#article_header_{{entry.id}})")
 						p.uk-article-meta
-							span Written by {{entry.author.username}} on {{entry.pub_date | date:"DATETIME_FORMAT"}}
+							span Written by {{entry.author.username}} on {{entry.date_published | date:"DATETIME_FORMAT"}}
 							if entry.tags.all
 								span - Posted in:&nbsp;
 								- for tag in entry.tags.all
 									i {{tag.name}}
 						hr.uk-article-divider
-						p.content {{entry.summary}}
+						p.content {{entry.body|truncatechars:255}}
 						p
 							a.uk-button.uk-button-primary(href="{% url 'blog:entry' entry.id %}") Continue Reading
 							//a.uk-button {{entry.comment_set.count}} Comments
