@@ -4,8 +4,8 @@
 
 ### Basics  
     - [internationalization] Babel (1.3)
-        - pytz (2015.2)
-    - [basics] Django (1.8.1)
+        - pytz (2015.4)
+    - [basics] Django (1.8.2)
     - [testing] django-debug-toolbar (1.3.0)
         - sqlparse (0.1.15)
     - [testing] coverage (3.7.1)
@@ -16,5 +16,5 @@
         - six (1.9.0)
     - [images] pillow (2.8.1)
     - [rendering] less
-        - nodeenv (0.13.1)
+        - nodeenv (0.13.2)
     - [production] gunicorn (19.3.0)
