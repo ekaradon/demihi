@@ -18,7 +18,7 @@ class Album(models.Model):
 	title = models.CharField(max_length=60)
 	public = models.BooleanField(default=False)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.title
 
 
@@ -84,9 +84,6 @@ class Image(models.Model):
 	width = models.IntegerField(blank=True, null=True)
 	height = models.IntegerField(blank=True, null=True)
 	user = models.ForeignKey(User, null=True, blank=True)
-
-	def __unicode__(self):
-		return self.image.name
 
 	def __str__(self):
 		return self.image.name

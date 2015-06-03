@@ -58,7 +58,7 @@ class EntryAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
 	search_fields = ["title"]
 	filter_horizontal = ["tags", "albums"]
-	list_display = ["__unicode__", "title", "user", "rating", "size", "tags_", "albums_", "thumbnail", "date_created"]
+	list_display = ["__str__", "title", "user", "rating", "size", "tags_", "albums_", "thumbnail", "date_created"]
 
 	def save_model(self, request, obj, form, change):
 		obj.user = request.user
