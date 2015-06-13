@@ -65,8 +65,10 @@ class Entry(Model):
 		return ', '.join(lst)
 
 	def save(self, *args, **kwargs):
-		if self.is_published() and not self.date_published :
+		if self.is_published() and not self.date_published:
 			self.date_published = datetime.datetime.today()
+		elif self.date_published and not self.is_published():
+			self.date_published = None
 		super(Entry, self).save(*args, ** kwargs)
 
 	was_published_recently.admin_order_field = 'pub_date'
