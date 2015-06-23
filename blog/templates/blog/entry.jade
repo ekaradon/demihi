@@ -4,7 +4,8 @@ block content
 	article.uk-article
 		.uk-grid
 			.uk-width-1-4.uk-hidden-small
-				img.uk-border-circle(src="/media/{{entry.header}}")
+				if entry.header
+					img.uk-border-circle(src="/media/{{entry.header}}")
 			.uk-width-3-4.uk-vertical-align
 				h1.uk-article-title(style="display:inline-block; vertical-align:middle; margin-bottom:0; ") {{entry.title}}
 		p.uk-article-meta
