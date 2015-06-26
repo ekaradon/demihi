@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 # *.py[cod] # Warning:(3, 1) '*.py[cod]' is covered by '__pycache__/'
+*.pyc
 
 # C extensions
 *.so
