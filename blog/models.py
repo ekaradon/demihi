@@ -21,6 +21,12 @@ class Album(models.Model):
 	def __str__(self):
 		return self.title
 
+	def is_public(self):
+		return self.public
+
+	def is_private(self):
+		return not self.is_public()
+
 
 class Comment(Model):
 	answer_to = models.ForeignKey('self', blank=True, null=True)

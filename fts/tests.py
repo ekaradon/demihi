@@ -1,6 +1,6 @@
 from django.test import TestCase
 from core.models import Language
-from blog.models import Entry
+from blog.models import Album, Entry
 from django.db.utils import IntegrityError
 from django.core.management import call_command
 from django.contrib.auth.models import User
@@ -47,7 +47,6 @@ class EntryTestCase(TestCase):
 			author=User.objects.get(pk=1),
 			body='foo',
 			language=Language.objects.get(pk=5),
-			summary='bar',
 			title='foo bar',
 		)
 		entry_new.save()
@@ -55,7 +54,6 @@ class EntryTestCase(TestCase):
 			author=User.objects.get(pk=1),
 			body='test',
 			language=Language.objects.get(name="French"),
-			summary='ceci est un résumé',
 			title='Test de langue',
 		)
 		entry_old.save()
@@ -71,3 +69,15 @@ class EntryTestCase(TestCase):
 	def test_french_language_used(self):
 		result = Entry.objects.get(language__name='French')
 		self.assertIsNotNone(result, "An Entry must be found there")
+
+
+class AlbumTestCase(TestCase):
+	def setUp(self):
+		album_new = Album(title='name', public=True)
+		print(album_new)
+		album_new.save()
+
+	def test_album_has_rights_properties(self):
+		album = Album.objects.get(pk=1)
+		print(album)
+		self.assertEqual(album.title, 'name')
