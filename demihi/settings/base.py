@@ -46,7 +46,6 @@ THIRD_PARTY_APPS = (
 	'pyjade',
 	# Pillow - image management
 	'PIL',
-	'taggit',
 )
 
 CUSTOM_APPS = (
