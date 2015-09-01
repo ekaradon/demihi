@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
 	# Examples:
 	# url(r'^$', 'demihi.views.home', name='home'),
@@ -15,6 +14,9 @@ urlpatterns = [
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = 'Demihi administration'
+admin.site.site_title = 'Demihi administration'
 
 
 if settings.DEBUG:
